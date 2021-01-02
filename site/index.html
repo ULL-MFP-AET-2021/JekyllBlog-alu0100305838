@@ -1,25 +1,21 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-  </head>
-  <body>
-    <h1>Hello World-!</h1>
-    <h2>Web de alu0100305838 - Airam Expósito Márquez</h2>
-    <h3>Lista de la compra</h3>
-    <ul>
-      <li> Papas </li>
-      <li> Tomates </li>
-      <li> Uvas </li>
-      <li> Soja </li>
-      <li> Plátanos </li>
-      <li> Avena </li>
-      <li> Nueces </li>
-      <li> Naranjas </li>
-      <li> Almendras </li>
-      <li> Azúcar </li>
-      <li> Lejía </li>
-    </ul>
-  </body>
-</html>
+---
+layout: default
+---
+<div class="tareas_lista">
+  {%- for practica in site.tareas %}
+    {%- if practica.visible %}
+      {{ practica.name | slice: 0, 2  }}.  <a href="{{ practica.url }}">{{ practica.name }}</a>
+    {%- endif %}
+  {%- endfor %}
+</div>
+
+<div class="tareas">
+  {% for task in site.tareas %}
+    <article class="tarea">
+
+      <h1><a href="{{ task.baseurl }}{{ task.url }}">{{ task.name }} - {{ task.date | slice: 0, 10 }}</a></h1>
+      <p>{{ task.content | markdownify }}</p>
+      <a href="{{ task.baseurl }}{{ task.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div> 
